@@ -26,7 +26,7 @@ public class checkpw {
         }
     }
 
-    public boolean containsSpecialCharacter(String pw){     //PW needs to at least use one of those special character "()#$?!%/@"
+    public boolean containsSpecialCharacter(@NotNull String pw){     //PW needs to at least use one of those special character "()#$?!%/@"
         if(pw.matches(".*[()#$?!%/@].*")){
             return true;
         }else{
@@ -34,7 +34,7 @@ public class checkpw {
         }
     }
 
-    public boolean checkAscendingNums(String pw){          //PW isn't allowed to have ascending numbers like 123 or 456 or repetitive numbers like 333
+    public boolean checkAscendingNums(@NotNull String pw){          //PW isn't allowed to have ascending numbers like 123 or 456 or repetitive numbers like 333
 
         char[] pwArr = pw.toCharArray();
         int numCnt = 0;
@@ -48,7 +48,7 @@ public class checkpw {
                         return false;
                     }
                     numCnt = 0;
-                    i = i - 2;
+                    i -= 2;
                 }
             }else{
                 numCnt = 0;         //reset cnt if next character is not a number
@@ -57,9 +57,24 @@ public class checkpw {
         return true;
     }
 
-
     public boolean checkConsecutiveNums(String pw){
-        return false;
+        char[] pwArr = pw.toCharArray();
+        int numCnt = 0;
+
+        for(int i = 0; i < pw.length(); i++){
+            if(pwArr[i] >= 48 && pwArr[i] <= 57){
+                numCnt++;
+                if(numCnt == 4){
+                    if(pwArr[i] == pwArr[i-1] && pwArr[i-1] == pwArr[i-2] && pwArr[i-2] == pwArr[i-3]){
+                        return false;
+                    }else{
+                        numCnt = 0;
+                        i -= 3;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public boolean checkForAll(String pw){
@@ -76,7 +91,6 @@ public class checkpw {
             return false;
         }
     }
-
 
 }
 
