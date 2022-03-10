@@ -2,16 +2,18 @@ import org.jetbrains.annotations.NotNull;
 
 public class checkpw {
 
-    public boolean length(@NotNull String pw){          //PW needs to be between 8 and 26 characters
+    public boolean length(@NotNull String pw){          //PW needs to be between 8 and 25 characters
         if(pw.length() >= 8 && pw.length() <= 25){
             return true;
         }else{
+            System.out.println("PW needs to have between 8 and 25 characters");
             return false;
         }
     }
 
     public boolean isCaseSensitive(@NotNull String pw){     //PW needs to have both lower and upper case characters
         if(pw.equals(pw.toLowerCase()) || pw.equals(pw.toUpperCase())){
+            System.out.println("PW needs to have lower and upper case characters");
             return false;
         }else{
             return  true;
@@ -22,6 +24,7 @@ public class checkpw {
         if(pw.matches(".*[0-9].*") && (pw.matches(".*[A-Z].*")||pw.matches(".*[a-z].*"))){
             return true;
         }else{
+            System.out.println("PW needs to contain at least 1 number");
             return false;
         }
     }
@@ -30,6 +33,7 @@ public class checkpw {
         if(pw.matches(".*[()#$?!%/@].*")){
             return true;
         }else{
+            System.out.println("PW needs to conatin at leats one of the following special characters: ()#$?!%/@");
             return false;
         }
     }
@@ -45,6 +49,7 @@ public class checkpw {
                 numCnt++;                                  //cnt for every consecutive number
                 if(numCnt == 3){
                     if(pwArr[i] == (pwArr[i-1]+1) && (pwArr[i-2]+2) == (pwArr[i-1]+1)){ //check if ascending
+                        System.out.println("PW must not contain ascending numbers");
                         return false;
                     }
                     numCnt = 0;
@@ -57,7 +62,7 @@ public class checkpw {
         return true;
     }
 
-    public boolean checkConsecutiveNums(String pw){
+    public boolean checkRepeatingNums(@NotNull String pw){
         char[] pwArr = pw.toCharArray();
         int numCnt = 0;
 
@@ -66,6 +71,7 @@ public class checkpw {
                 numCnt++;
                 if(numCnt == 4){
                     if(pwArr[i] == pwArr[i-1] && pwArr[i-1] == pwArr[i-2] && pwArr[i-2] == pwArr[i-3]){
+                        System.out.println("PW must not contain repeating numbers");
                         return false;
                     }else{
                         numCnt = 0;
@@ -84,10 +90,12 @@ public class checkpw {
             &&  isAlphaNumeric(pw)
             &&  containsSpecialCharacter(pw)
             &&  checkAscendingNums(pw)
-            &&  checkConsecutiveNums(pw)
+            &&  checkRepeatingNums(pw)
         ){
+            System.out.println("Your PW is secure!");
             return true;
         }else{
+            System.out.println("Your PW is unsecure! Please try another!");
             return false;
         }
     }
