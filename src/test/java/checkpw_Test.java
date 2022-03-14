@@ -4,18 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class checkpw_Test {
-    checkpw check;
-
-    @BeforeEach
-    void setup(){
-        check = new checkpw();
-    }
 
 
     @DisplayName("check length <8 characters")
     @Test
     void test_checkLength_1(){
-        Boolean actual = check.length("xxxxxxx"); //7
+        Boolean actual = checkpw.length("xxxxxxx"); //7
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -23,7 +17,7 @@ public class checkpw_Test {
     @DisplayName("check length >26 character")
     @Test
     void test_checkLength_2(){
-        Boolean actual = check.length("xxxxxxxxxxxxxxxxxxxxxxxxxx"); //27
+        Boolean actual = checkpw.length("xxxxxxxxxxxxxxxxxxxxxxxxxx"); //27
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -31,7 +25,7 @@ public class checkpw_Test {
     @DisplayName("check length 8 characters")
     @Test
     void test_checkLength_3(){
-        Boolean actual = check.length("xxxxxxxx"); //8
+        Boolean actual = checkpw.length("xxxxxxxx"); //8
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -39,7 +33,7 @@ public class checkpw_Test {
     @DisplayName("check length 26 characters")
     @Test
     void test_checkLength_4(){
-        Boolean actual = check.length("xxxxxxxxxxxxxxxxxxxxxxxxx"); //26
+        Boolean actual = checkpw.length("xxxxxxxxxxxxxxxxxxxxxxxxx"); //26
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -47,7 +41,7 @@ public class checkpw_Test {
     @DisplayName("checkCaseSensitivity 1")
     @Test
     void test_checkCaseSensitivity_1(){
-        Boolean actual = check.isCaseSensitive("x");
+        Boolean actual = checkpw.isCaseSensitive("x");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -55,7 +49,7 @@ public class checkpw_Test {
     @DisplayName("checkCaseSensitivity 2")
     @Test
     void test_CaseSensitivity_2(){
-        Boolean actual = check.isCaseSensitive("xX");
+        Boolean actual = checkpw.isCaseSensitive("xX");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -63,7 +57,7 @@ public class checkpw_Test {
     @DisplayName("checkCaseSensitivity 3")
     @Test
     void test_CaseSensitivity_3(){
-        Boolean actual = check.isCaseSensitive("xx1");
+        Boolean actual = checkpw.isCaseSensitive("xx1");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -71,7 +65,7 @@ public class checkpw_Test {
     @DisplayName("isAlphaNumeric 1")
     @Test
     void test_isAlphaNumeric_1(){
-        Boolean actual = check.isAlphaNumeric("password");
+        Boolean actual = checkpw.isAlphaNumeric("password");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -79,7 +73,7 @@ public class checkpw_Test {
     @DisplayName("isAlphaNumeric 2")
     @Test
     void test_isAlphaNumeric_2(){
-        Boolean actual = check.isAlphaNumeric("password123");
+        Boolean actual = checkpw.isAlphaNumeric("password123");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -87,7 +81,7 @@ public class checkpw_Test {
     @DisplayName("specialChartacter 1")
     @Test
     void test_specialCharacter_1(){
-        Boolean actual = check.containsSpecialCharacter("a");
+        Boolean actual = checkpw.containsSpecialCharacter("a");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -95,7 +89,7 @@ public class checkpw_Test {
     @DisplayName("specialChartacter 2")
     @Test
     void test_specialCharacter_2(){
-        Boolean actual = check.containsSpecialCharacter("()#$?!%/@");
+        Boolean actual = checkpw.containsSpecialCharacter("()#$?!%/@");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -103,7 +97,7 @@ public class checkpw_Test {
     @DisplayName("specialChartacter 3")
     @Test
     void test_specialCharacter_3(){
-        Boolean actual = check.containsSpecialCharacter("}][{=´`*+~'_<>|^°,.:;§");
+        Boolean actual = checkpw.containsSpecialCharacter("}][{=´`*+~'_<>|^°,.:;§");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -111,7 +105,7 @@ public class checkpw_Test {
     @DisplayName("Ascending Numbers 1")
     @Test
     void test_checkAscendingNums_1(){
-        Boolean actual = check.checkAscendingNums("112233445566");
+        Boolean actual = checkpw.checkAscendingNums("112233445566");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -119,15 +113,15 @@ public class checkpw_Test {
     @DisplayName("Ascending Numbers 2")
     @Test
     void test_checkAscendingNums_2(){
-        Boolean actual = check.checkAscendingNums("password123");
-        Boolean expected = false;
+        Boolean actual = checkpw.checkAscendingNums("password1321");
+        Boolean expected = true;
         assertEquals(expected, actual);
     }
 
     @DisplayName("Ascending Numbers 3")
     @Test
     void test_checkAscendingNums_3(){
-        Boolean actual = check.checkAscendingNums("987654");
+        Boolean actual = checkpw.checkAscendingNums("9876512364");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -135,7 +129,7 @@ public class checkpw_Test {
     @DisplayName("Consecutive Numbers 1")
     @Test
     void test_checkConsecutiveNums_1(){
-        Boolean actual = check.checkConsecutiveNums("password1111");
+        Boolean actual = checkpw.checkRepeatingNums("password1111");
         Boolean expected = false;
         assertEquals(expected, actual);
     }
@@ -143,7 +137,7 @@ public class checkpw_Test {
     @DisplayName("Consecutive Numbers 2")
     @Test
     void test_checkConsecutiveNums_2(){
-        Boolean actual = check.checkConsecutiveNums("password111");
+        Boolean actual = checkpw.checkRepeatingNums("password!111!!");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -151,7 +145,7 @@ public class checkpw_Test {
     @DisplayName("Check for all conditions 1")
     @Test
     void test_checkForAll_1(){
-        Boolean actual = check.checkForAll("Password111!");
+        Boolean actual = checkpw.checkForAll("Password111!");
         Boolean expected = true;
         assertEquals(expected, actual);
     }
@@ -159,7 +153,7 @@ public class checkpw_Test {
     @DisplayName("Check for all conditions 2")
     @Test
     void test_checkForAll_2(){
-        Boolean actual = check.checkForAll("Password1111");
+        Boolean actual = checkpw.checkForAll("Password1111");
         Boolean expected = false;
         assertEquals(expected, actual);
     }

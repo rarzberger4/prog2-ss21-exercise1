@@ -2,7 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class checkpw {
 
-    public boolean length(@NotNull String pw){          //PW needs to be between 8 and 25 characters
+    public static boolean length(@NotNull String pw){          //PW needs to be between 8 and 25 characters
         if(pw.length() >= 8 && pw.length() <= 25){
             return true;
         }else{
@@ -11,7 +11,7 @@ public class checkpw {
         }
     }
 
-    public boolean isCaseSensitive(@NotNull String pw){     //PW needs to have both lower and upper case characters
+    public static boolean isCaseSensitive(@NotNull String pw){     //PW needs to have both lower and upper case characters
         if(pw.equals(pw.toLowerCase()) || pw.equals(pw.toUpperCase())){
             System.out.println("PW needs to have lower and upper case characters");
             return false;
@@ -20,7 +20,7 @@ public class checkpw {
         }
     }
 
-    public boolean isAlphaNumeric(@NotNull String pw){      //PW needs to have at least 1 number
+    public static boolean isAlphaNumeric(@NotNull String pw){      //PW needs to have at least 1 number
         if(pw.matches(".*[0-9].*") && (pw.matches(".*[A-Z].*")||pw.matches(".*[a-z].*"))){
             return true;
         }else{
@@ -29,7 +29,7 @@ public class checkpw {
         }
     }
 
-    public boolean containsSpecialCharacter(@NotNull String pw){     //PW needs to at least use one of those special character "()#$?!%/@"
+    public static boolean containsSpecialCharacter(@NotNull String pw){     //PW needs to at least use one of those special character "()#$?!%/@"
         if(pw.matches(".*[()#$?!%/@].*")){
             return true;
         }else{
@@ -38,7 +38,7 @@ public class checkpw {
         }
     }
 
-    public boolean checkAscendingNums(@NotNull String pw){          //PW isn't allowed to have ascending numbers like 123 or 456 or repetitive numbers like 333
+    public static boolean checkAscendingNums(@NotNull String pw){          //PW isn't allowed to have ascending numbers like 123 or 456 or repetitive numbers like 333
 
         char[] pwArr = pw.toCharArray();
         int numCnt = 0;
@@ -62,7 +62,7 @@ public class checkpw {
         return true;
     }
 
-    public boolean checkRepeatingNums(@NotNull String pw){
+    public static boolean checkRepeatingNums(@NotNull String pw){
         char[] pwArr = pw.toCharArray();
         int numCnt = 0;
 
@@ -83,7 +83,7 @@ public class checkpw {
         return true;
     }
 
-    public boolean checkForAll(String pw){
+    public static boolean checkForAll(String pw){
         if(
                 length(pw)
             &&  isCaseSensitive(pw)
