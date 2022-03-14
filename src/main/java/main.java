@@ -9,7 +9,7 @@ public class main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Check your Password:");
-        checkpw.checkForAll(scanner.nextLine());
+        Checkpw.checkForAll(scanner.nextLine());
 
 
     }

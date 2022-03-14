@@ -1,6 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
-public class checkpw {
+public class Checkpw {
 
     public static boolean length(@NotNull String pw){          //PW needs to be between 8 and 25 characters
         if(pw.length() >= 8 && pw.length() <= 25){
@@ -67,10 +67,10 @@ public class checkpw {
         int numCnt = 0;
 
         for(int i = 0; i < pw.length(); i++){
-            if(pwArr[i] >= 48 && pwArr[i] <= 57){
+            if(pwArr[i] >= 48 && pwArr[i] <= 57){       //ASCII 1 to 9 is 48 to 57
                 numCnt++;
                 if(numCnt == 4){
-                    if(pwArr[i] == pwArr[i-1] && pwArr[i-1] == pwArr[i-2] && pwArr[i-2] == pwArr[i-3]){
+                    if(pwArr[i] == pwArr[i-1] && pwArr[i-1] == pwArr[i-2] && pwArr[i-2] == pwArr[i-3]){  //check if number repeats
                         System.out.println("PW must not contain repeating numbers");
                         return false;
                     }else{
